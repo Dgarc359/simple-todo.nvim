@@ -1,4 +1,4 @@
-local popup = require("plenary.popup")
+--local popup = require("plenary.popup")
 local _, sqlite = pcall(require, "sqlite")
 
 local M = { }
