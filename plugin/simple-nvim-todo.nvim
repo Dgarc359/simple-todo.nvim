@@ -1,0 +1,18 @@
+" Title: Simple Nvim Todo Plugin
+" Description: A simple plugin to manage todos in NVIM
+
+
+" Prevents the plugin from being loaded multiple times
+if exists("g:loaded_simplenvimtodo")
+    finish
+endif
+let g:loaded_simplenvimtodo = 1
+
+let s:lua_rocks_deps_loc = expand("<sfile>:h:r") . "/../lua/simple-nvim-todo/deps"
+exe "lua package.path = package.path .. ';" . s:lua_rocks_deps_loc . "/lua-?/init.lua'"
+
+" Expose plugin functions for use as commands in nvim
+command! -nargs=0 FetchTodos lua require("simple-nvim-todo").fetch_todos()
+command! -nargs=0 InsertTodo lua require("simple-nvim-todo").insert_todo()
+command! -nargs=0 CompleteTodo lua require("simple-nvim-todo").complete_todo()
+
