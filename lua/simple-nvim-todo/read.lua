@@ -1,5 +1,6 @@
 --local popup = require("plenary.popup")
 local _, sqlite = pcall(require, "sqlite")
+local util = require("lua.simple-nvim-todo.util")
 
 local M = { }
 
@@ -11,13 +12,7 @@ function M.todos()
     -- local items = sqlite:with_open("todo.db", function(db)
     --   return db:eval("SELECT * FROM todo_list WHERE completed == 'No';")
     -- end)
-    print(items)
-    for k, v in ipairs(items) do
-        -- print(tostring(v))
-        for k2, v2 in ipairs(v) do
-            print(v2)
-        end
-    end
+    util.pretty_print(items)
 
 
     -- local win_id = popup.create({ "menu item 1"}, {})

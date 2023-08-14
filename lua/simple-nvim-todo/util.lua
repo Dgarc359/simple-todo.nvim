@@ -1,4 +1,5 @@
-function pretty_print(value, indent, already_printed)
+local M = {}
+function M.pretty_print(value, indent, already_printed)
   indent = indent or ""
   already_printed = already_printed or {}
   local type = type(value)
@@ -36,3 +37,5 @@ function pretty_print(value, indent, already_printed)
     io.write("\n")
   end
 end
+
+return M
