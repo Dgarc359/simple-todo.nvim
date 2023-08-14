@@ -13,10 +13,14 @@ function M.todos()
     --   return db:eval("SELECT * FROM todo_list WHERE completed == 'No';")
     -- end)
     -- util.pretty_print(items, "")
+    local mapped_items = {}
+    table.foreach(items, function(k, v)
+       table.insert(mapped_items, v.description)
+    end)
 
 
    -- local win_id = popup.create({ "menu item 1"}, {})
-   local win_id = popup.create({ "menu item 1", items[1].description }, {})
+   local win_id = popup.create(mapped_items, {})
 
 end
 
