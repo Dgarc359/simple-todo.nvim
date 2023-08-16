@@ -1,6 +1,6 @@
 local popup = require("plenary.popup")
 local _, sqlite = pcall(require, "sqlite")
-local util = require("lua.simple-nvim-todo.util")
+local util = require("lua.simple-todo.util")
 
 local M = { }
 
@@ -20,7 +20,9 @@ function M.todos()
 
 
    -- local win_id = popup.create({ "menu item 1"}, {})
-   local win_id = popup.create(mapped_items, {})
+   local win_id = popup.create(mapped_items, {
+        borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
+   })
 
 end
 
