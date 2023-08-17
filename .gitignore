@@ -1,3 +1,4 @@
+.luarc.json
 *.db
 # Compiled Lua sources
 luac.out

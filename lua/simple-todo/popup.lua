@@ -9,13 +9,13 @@ local function create_ui()
 
     local bufnr = vim.api.nvim_create_buf(false, false)
 
-    local win_id = popup.create(bufnr, {
+    local Todo_win_id, win= popup.create(bufnr, {
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
     })
 
     return {
         bufnr = bufnr,
-        win_id = win_id
+        win_id = Todo_win_id
     }
 end
 
