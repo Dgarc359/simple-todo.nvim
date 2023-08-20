@@ -7,7 +7,7 @@ Todo_win_bufh = nil
 
 local function create_ui()
 
-    local bufnr = vim.api.nvim_create_buf(false, false)
+    local bufnr = vim.api.nvim_create_buf(false, true)
 
     local Todo_win_id, win= popup.create(bufnr, {
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
@@ -20,6 +20,7 @@ local function create_ui()
 end
 
 local function close_menu()
+
     vim.api.nvim_win_close(Todo_win_id, true)
     Todo_win_id = nil
     Todo_win_bufh = nil
@@ -34,16 +35,20 @@ function M.toggle_ui()
     local win_info = create_ui()
     Todo_win_id = win_info.win_id
     Todo_win_bufh = win_info.bufnr
+    print(Todo_win_bufh)
 
-    -- vim.api.nvim_buf_set_option(Todo_win_id, "number", true)
     vim.api.nvim_buf_set_name(Todo_win_bufh, "simple-todo-menu")
-    -- vim.api.nvim_buf_set_lines(Todo_win_bufh, 0, #{"menu-item 1"}, false, {"menu-item 1"})
+    vim.api.nvim_buf_set_option(Todo_win_bufh, "bufhidden", "delete")
     vim.api.nvim_buf_set_keymap(
         Todo_win_bufh,
         "n",
         "q",
         "<Cmd>lua require('simple-todo.popup').toggle_ui()<CR>",
         { silent = true }
+    )
+
+    vim.cmd(
+        "autocmd BufLeave <buffer> ++nested ++once silent lua require('simple-todo.popup').toggle_ui()"
     )
 
 end
